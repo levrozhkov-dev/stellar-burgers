@@ -23,7 +23,7 @@ import {
   ProtectedRoute
 } from '@components';
 
-import { useDispatch } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { fetchUser } from '../../services/slices/userSlice';
 import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 
@@ -32,6 +32,8 @@ const App = () => {
   const background = location.state?.background;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const order = useSelector((state) => state.order.order);
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -115,7 +117,10 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title='Order info' onClose={onCloseModal}>
+              <Modal
+                title={order ? `#${order.number}` : 'Order info'}
+                onClose={onCloseModal}
+              >
                 <OrderInfo />
               </Modal>
             }
@@ -132,7 +137,10 @@ const App = () => {
             path='/profile/orders/:number'
             element={
               <ProtectedRoute>
-                <Modal title='Order info' onClose={onCloseModal}>
+                <Modal
+                  title={order ? `#${order.number}` : 'Order info'}
+                  onClose={onCloseModal}
+                >
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

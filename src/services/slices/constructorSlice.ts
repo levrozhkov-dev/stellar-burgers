@@ -53,6 +53,10 @@ const constructorSlice = createSlice({
         (ingredient) => ingredient.id !== action.payload
       );
     },
+    clearConstructor: (state) => {
+      state.bun = null;
+      state.ingredients = [];
+    },
     repositIngredient: (
       state,
       action: PayloadAction<{ index: number; to: 'up' | 'down' }>
@@ -76,8 +80,8 @@ const constructorSlice = createSlice({
       .addCase(createOrder.fulfilled, (state, action) => {
         state.orderRequest = false;
         state.orderModalData = action.payload;
-        state.bun = null;
-        state.ingredients = [];
+        // Очистка конструктора при успешном создании заказа
+        constructorSlice.caseReducers.clearConstructor(state);
       })
       .addCase(createOrder.rejected, (state) => {
         state.orderRequest = false;
