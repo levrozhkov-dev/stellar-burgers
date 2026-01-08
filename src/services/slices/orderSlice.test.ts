@@ -1,15 +1,8 @@
-import orderReducer, { fetchOrderByNumber } from './orderSlice';
+import orderReducer, { fetchOrderByNumber, initialState } from './orderSlice';
 import type { OrderState } from './orderSlice';
 import type { TOrder } from '@utils-types';
 
 describe('работа с текущим заказом', () => {
-  // Начальное состояние слайса заказа
-  const initialState: OrderState = {
-    order: null,
-    loading: false,
-    error: null
-  };
-
   // Мок одного заказа
   const mockOrder: TOrder = {
     _id: 'order_user_1',

@@ -1,12 +1,6 @@
-import reducer, { fetchIngredients } from './ingredientsSlice';
+import reducer, { fetchIngredients, initialState } from './ingredientsSlice';
 
 describe('загрузка ингредиентов', () => {
-  // Начальное состояние слайса
-  const initialState = {
-    ingredients: [],
-    loading: false,
-    error: null
-  };
 
   // Мок данных ингредиентов
   const mockIngredients = [

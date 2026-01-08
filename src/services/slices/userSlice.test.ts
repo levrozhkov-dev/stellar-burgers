@@ -3,17 +3,11 @@ import reducer, {
   registerUser,
   fetchUser,
   updateUser,
-  logoutUser
+  logoutUser,
+  initialState
 } from './userSlice';
 
 describe('авторизация и профиль пользователя', () => {
-  const initialState = {
-    user: null,
-    authChecked: false,
-    loading: false,
-    error: null
-  };
-
   const mockUser = { email: 'test@test.ru', name: 'Test' };
 
   it('должен возвращать initialState при неизвестном action', () => {

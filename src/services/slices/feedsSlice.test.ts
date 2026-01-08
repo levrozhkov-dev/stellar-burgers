@@ -1,4 +1,4 @@
-import reducer, { fetchFeed, fetchUserOrders } from './feedsSlice';
+import reducer, { fetchFeed, fetchUserOrders, initialState } from './feedsSlice';
 import { getFeedsApi } from '@api';
 import type { FeedsState } from './feedsSlice';
 import type { TOrder } from '@utils-types';
@@ -7,15 +7,6 @@ import type { TOrder } from '@utils-types';
 type TFeedPayload = Awaited<ReturnType<typeof getFeedsApi>>;
 
 describe('feedsSlice', () => {
-  // Начальное состояние стора
-  const initialState: FeedsState = {
-    userOrders: [],
-    feedOrders: [],
-    feed: { total: 0, totalToday: 0 },
-    loading: false,
-    error: null
-  };
-
   // Мок заказов пользователя
   const userOrdersMock: TOrder[] = [
     {
